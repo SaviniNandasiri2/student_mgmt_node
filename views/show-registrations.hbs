@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="d-flex justify-content-between">
+        <div>
+            <h3>All Registered Students for the program_ID : {{program_id}}</h3>
+        </div>
+        <div>
+            <a class="btn btn-warning" href="/registrations">+ New Registration</a>
+        </div>
+    </div>
+<hr>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Student Id</th>
+            <th>Student Name</th>
+            <th>Program</th>
+            <th>Registered Date</th>
+            <th>Payment Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each rows}}
+        <tr>
+            <td>{{this.st_id}}</td>
+            <td>{{this.full_name}}</td>
+            <td>{{this.program_name}}</td>
+            <td>{{this.date}}</td>
+            <td>{{this.payment}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+</div>

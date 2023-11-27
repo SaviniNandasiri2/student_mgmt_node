@@ -1,0 +1,55 @@
+<div class="container single-form">
+    <div class="d-flex justify-content-between">
+        <div class="search">
+            <h3>New Student Registrations</h3>
+        </div>
+    </div>
+
+<form action="/create-registration" method="post" class="mt-4">
+    <!-- Search program by name -->
+
+    <div class="form-group col-6 mb-2">
+        <label for="programSearch">Select the Program:</label>
+        <input type="text" id="programSearch" class="form-control form-control-sm" name="programSearch" list="programList" placeholder="Enter Program Name" required>
+        <datalist id="programList">
+            {{#each programs}}
+                <option value="{{program_name}}" data-id="{{program_id}}">
+            {{/each}}
+        </datalist>
+    </div>
+    <div class="form-group col-4 mb-2">
+        <label for="programId">Program Id:</label>
+        <input type="text" class="form-control form-control-sm" id="selectedProgramId" name="programId" readonly>
+    </div>
+
+
+    <div class="form-group col-3 mb-2">
+        <label for="studentId">Student ID:</label>
+        <input type="text" id="studentId" class="form-control form-control-sm" name="studentId" placeholder="Enter Student ID" required>
+    </div>
+    <div class="form-group col-3 mb-2">
+        <label for="registrationDate">Registration Date:</label>
+        <input type="text" id="registrationDate" name="registrationDate" value="{{ currentDate }}" class="form-control form-control-sm datepicker" required>
+    </div>
+
+
+    <div class="form-group col-4 mb-2">
+        <label for="payment">Payment Amount:</label>
+        <input type="number" step="0.01" id="payment" class="form-control form-control-sm" name="payment" placeholder="0.00" required>
+    </div>
+    <div class="form-group col-6">
+        <button type="submit" class="form-control btn btn-primary btn-sm">Register</button>
+    </div>
+
+</form>
+
+</div>
+
+<script>
+    document.getElementById('programSearch').addEventListener('input', function () {
+        const selectedOption = document.querySelector('#programList option[value="' + this.value + '"]');
+        const selectedProgramId = selectedOption ? selectedOption.getAttribute('data-id') : '';
+
+        document.getElementById('selectedProgramId').value = selectedProgramId;  
+    });
+</script>
